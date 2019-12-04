@@ -33,7 +33,8 @@
 	"minimum-stability": "dev",
 	"require": {
 		"php" : "^7.1",
-		"myth/auth": "dev-develop"
+		"myth/auth": "dev-develop",
+		"firebase/php-jwt": "^5.0"
 	},
 	"require-dev": {
 		"phpunit/phpunit" : "^7.0",

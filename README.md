@@ -23,7 +23,7 @@ and always be up-to-date:
 Or, install manually by downloading the source files and adding the directory to
 `app/Config/Autoload.php`.
 
-## Configuration (optional)
+## Configuration
 
 The library's default behavior can be altered by extending its config file. Copy
 **bin/MythAuthFirebase.php** to **app/Config/** and follow the instructions
