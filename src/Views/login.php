@@ -2,7 +2,7 @@
 <?= $this->section('main') ?>
 
 	<div class="container">
-		<h2>Login</h2>
+		<h2>Login or Register</h2>
 
 		<div class="row">
 			<div class="col-lg-9">
