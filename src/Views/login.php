@@ -2,9 +2,7 @@
 <?= $this->section('main') ?>
 
 	<div class="container">
-		<h2>Login or Register</h2>
-
-		<div class="row">
+		<div class="row justify-content-center">
 			<div class="col-lg-9">
 				<div id="firebaseui-auth-container"></div>
 			</div>
