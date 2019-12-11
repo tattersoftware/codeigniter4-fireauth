@@ -21,14 +21,19 @@
 				signInSuccessWithAuthResult: function(authResult, redirectUrl) {
 					fetch('<?= site_url('callback') ?>', {
 						method: 'POST',
+						credentials: 'same-origin',
 						headers: {
 							'Accept': 'application/json',
 							'Content-Type': 'application/json'
 						},
 						body: JSON.stringify(authResult)
+					}).then((response) => {
+						window.location = '<?= site_url($config->urls['success']) ?>';
+					}).catch((error) => {
+						console.log(error);
 					});
-					
-					return true;
+
+					return false;
 				}
 			},
 			signInSuccessUrl: '<?= site_url($config->urls['success']) ?>',

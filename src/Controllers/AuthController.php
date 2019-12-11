@@ -7,11 +7,26 @@ use Myth\Auth\Models\UserModel;
 class AuthController extends Controller
 {
 	/**
-	 * Return point for successful Firebase login.
+	 * Endpoint to return a user to the last URL before login
+	 */
+	public function login_return()
+	{
+		$auth = service('authentication');
+		
+		$redirectUrl = session('redirect_url') ?? '/';
+		unset($_SESSION['redirect_url']);
+
+		return redirect()->to($redirectUrl)->with('message', $auth->isLoggedIn() ? lang('Auth.loginSuccess') : lang('Auth.badAttempt'));
+	}
+
+	/**
+	 * AJAX endpoint for successful Firebase login.
 	 * Handles registration (if necessary) and logging in.
 	 */
 	public function callback()
 	{
+		log_message('debug', 'Initiating Firebase login request');
+
 		// Parse the data
 		$data = $this->request->getBody();
 		if (! $result = json_decode($data))
@@ -98,12 +113,19 @@ class AuthController extends Controller
 			$row['id'] = $user->id;
 			if (! $users->update($user->id, $row))
 			{
-				log_message('error', 'Unable to update user: ' . implode(' ', $users->errors()));
+				log_message('warning', 'Unable to update user: ' . implode(' ', $users->errors()));
 			}
 		}
 
 		// Log the user in
 		$auth = service('authentication');
-		$auth->login($user, true);
+		if ($auth->login($user, true))
+		{
+			log_message('debug', 'Firebase login successful, user #' . $user->id);
+		}
+		else
+		{
+			log_message('debug', 'Login failed for user #' . $user->id . ': ' . $auth->error() ?? lang('Auth.badAttempt'));
+		}
 	}
 }

@@ -6,7 +6,7 @@ class MythAuthFirebase extends BaseConfig
 {
 	// URLs for successful logins, terms of service, and privacy policy
 	public $urls = [
-		'success' => '',
+		'success' => 'login_return',
 		'terms'   => '',
 		'privacy' => '',
 	];
