@@ -1,6 +1,6 @@
 {
-	"name": "tatter/myth-auth-firebase",
-	"description": "Firebase authentication extension for Myth:Auth in CodeIgniter 4",
+	"name": "tatter/fireauth",
+	"description": "Myth:Auth Firebase extension for CodeIgniter 4",
 	"keywords": [
 		"codeigniter",
 		"codeigniter4",
@@ -10,7 +10,7 @@
 		"google",
 		"cloud"
 	],
-	"homepage": "https://github.com/tattersoftware/myth-auth-firebase",
+	"homepage": "https://github.com/tattersoftware/codeigniter-fireauth",
 	"license": "MIT",
 	"authors": [
 		{
@@ -32,7 +32,7 @@
 	],
 	"minimum-stability": "dev",
 	"require": {
-		"php" : "^7.1",
+		"php" : "^7.2",
 		"myth/auth": "dev-develop"
 	},
 	"require-dev": {
@@ -42,12 +42,12 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Tatter\\MythAuthFirebase\\": "src"
+			"Tatter\\Fireauth\\": "src"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"CIModuleTests\\Support\\": "tests/_support"
+			"ModuleTests\\Support\\": "tests/_support"
 		}
 	},
 	"scripts": {
