@@ -1,12 +1,12 @@
-# Myth:Auth Firebase
+# Tatter\Fireauth
 
-Firebase authentication extension for Myth:Auth in CodeIgniter 4
+Myth:Auth Firebase extension for CodeIgniter 4
 
 ## Quick Start
 
-1. Install with Composer: `> composer require tatter/myth-auth-firebase`
+1. Install with Composer: `> composer require tatter/fireauth`
 2. Add credentials to your environment configuration **.env**
-3. Set the Myth:Auth login view: `'login' => 'Tatter\MythAuthFirebase\Views\login'`
+3. Set the Myth:Auth login view: `'login' => 'Tatter\Fireauth\Views\login'`
 
 ## Description
 
@@ -18,7 +18,7 @@ default login view with one configured for your Firebase app.
 
 Install easily via Composer to take advantage of CodeIgniter 4's autoloading capabilities
 and always be up-to-date:
-* `> composer require tatter/myth-auth-firebase`
+* `> composer require tatter/fireauth`
 
 Or, install manually by downloading the source files and adding the directory to
 `app/Config/Autoload.php`.
@@ -26,7 +26,7 @@ Or, install manually by downloading the source files and adding the directory to
 ## Configuration
 
 The library's default behavior can be altered by extending its config file. Copy
-**bin/MythAuthFirebase.php** to **app/Config/** and follow the instructions
+**bin/Fireauth.php** to **app/Config/** and follow the instructions
 in the comments. If no config file is found in **app/Config** the library will use its own.
 
 ### Credentials

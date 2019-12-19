@@ -1,8 +1,8 @@
-<?php namespace Tatter\MythAuthFirebase\Config;
+<?php namespace Tatter\Fireauth\Config;
 
 use CodeIgniter\Config\BaseConfig;
 
-class MythAuthFirebase extends BaseConfig
+class Fireauth extends BaseConfig
 {
 	// URLs for successful logins, terms of service, and privacy policy
 	public $urls = [

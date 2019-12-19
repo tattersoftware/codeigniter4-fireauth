@@ -16,6 +16,6 @@
 
 	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.3.0/firebase-ui-auth.css" />
 
-	<?= view('Tatter\MythAuthFirebase\Views\script', ['config' => config('MythAuthFirebase')]) ?>
+	<?= view('Tatter\Fireauth\Views\script', ['config' => config('Fireauth')]) ?>
 		
 <?= $this->endSection() ?>

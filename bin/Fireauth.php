@@ -10,11 +10,11 @@
 *
 ***/
 
-class MythAuthFirebase extends Tatter\MythAuthFirebase\Config\MythAuthFirebase
+class Fireauth extends Tatter\Fireauth\Config\Fireauth
 {
 	// URLs for successful logins, terms of service, and privacy policy
 	public $urls = [
-		'success' => '',
+		'success' => 'login_return',
 		'terms'   => '',
 		'privacy' => '',
 	];

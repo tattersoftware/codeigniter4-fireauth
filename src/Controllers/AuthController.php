@@ -1,6 +1,7 @@
-<?php namespace Tatter\MythAuthFirebase\Controllers;
+<?php namespace Tatter\Fireauth\Controllers;
 
 use CodeIgniter\Controller;
+use CodeIgniter\Events\Events;
 use Myth\Auth\Entities\User;
 use Myth\Auth\Models\UserModel;
 
@@ -41,13 +42,11 @@ class AuthController extends Controller
 			log_message('error', 'Unable to decipher Firebase result: ' . $data);
 			return;
 		}
-		$token = $result->user->stsTokenManager->accessToken;
-		unset($result);
 
 		// Verify the token with Google
 		$url      = 'https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=' . env('firebase.apiKey');
 		$client   = service('curlrequest');
-		$response = $client->request('POST', $url, ['json' => ['idToken' => $token]]);
+		$response = $client->request('POST', $url, ['json' => ['idToken' => $result->user->stsTokenManager->accessToken]]);
 		if (! $identity = json_decode($response->getBody()))
 		{
 			log_message('error', 'Unable to verify IdentityToolkit response: ' . $response->getBody());
@@ -122,6 +121,13 @@ class AuthController extends Controller
 		if ($auth->login($user, true))
 		{
 			log_message('debug', 'Firebase login successful, user #' . $user->id);
+
+			// Check for a new user
+			if (! empty($result->additionalUserInfo->isNewUser))
+			{
+				// Trigger the event
+				Events::trigger('firebase_new_user', $result->user);
+			}
 		}
 		else
 		{
