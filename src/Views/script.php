@@ -36,6 +36,7 @@
 					return false;
 				}
 			},
+			credentialHelper: firebaseui.auth.CredentialHelper.NONE,
 			signInSuccessUrl: '<?= site_url($config->urls['success']) ?>',
 			signInOptions: [
 				<?php foreach ($config->providers as $provider): ?>
