@@ -32,8 +32,30 @@ in the comments. If no config file is found in **app/Config** the library will u
 ### Credentials
 
 The login view uses your Firebase app's credentials to connect to your project. You must
-provide the configuration parameters in the **.env** file in the root of your project. An
-example of the fields you will add is included here: [bin/env.example](bin/env.example).
+provide the public API key in the **.env** file in the root of your project. Add this to
+the bottom of your file:
+```
+#--------------------------------------------------------------------
+# FIREBASE
+#--------------------------------------------------------------------
+
+# firebase.apiKey = YOUR_API_KEY_HERE
+```
+
+Before using the UI you must be sure the configuration parameters are loaded and the
+Firebase instance initialized. For example, your layout might include this:
+```
+	<!-- Firebase JS SDK -->
+	<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+
+	<!-- Firebase SDK config -->
+	<script src="<?= base_url('credentials/firebas.js') ?>"></script>
+
+	<script>
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+	</script>
+```
 
 For more info on acquiring your config file see
 [Firebase Project Support](http://support.google.com/firebase/answer/7015592)
