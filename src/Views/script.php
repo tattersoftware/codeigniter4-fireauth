@@ -1,21 +1,5 @@
-
 	<script type="text/javascript">
-		// Firebase configuration
-		var firebaseConfig = {
-			apiKey: "<?= env('firebase.apiKey') ?>",
-			authDomain: "<?= env('firebase.authDomain') ?>",
-			databaseURL: "<?= env('firebase.databaseURL') ?>",
-			projectId: "<?= env('firebase.projectId') ?>",
-			storageBucket: "<?= env('firebase.storageBucket') ?>",
-			messagingSenderId: "<?= env('firebase.messagingSenderId') ?>",
-			appId: "<?= env('firebase.appId') ?>",
-			measurementId: "<?= env('firebase.measurementId') ?>",
-		};
-
-		// Initialize Firebase
-		firebase.initializeApp(firebaseConfig);
-
-		// FirebaseUI config
+		// FirebaseUI config - presupposes configuration and initialization
 		var uiConfig = {
 			callbacks: {
 				signInSuccessWithAuthResult: function(authResult, redirectUrl) {

@@ -9,13 +9,13 @@
 		</div>
 	</div>
 
-	<!-- Firebase JS SDK and Auth library -->
-	<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/ui/4.3.0/firebase-ui-auth.js"></script>
+<?= $this->endSection() ?>
+<?= $this->section('footerAssets') ?>
 
+	<!-- Firebase JS Auth library -->
+	<script src="https://www.gstatic.com/firebasejs/ui/4.3.0/firebase-ui-auth.js"></script>
 	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.3.0/firebase-ui-auth.css" />
 
 	<?= view('Tatter\Fireauth\Views\script', ['config' => config('Fireauth')]) ?>
-		
+
 <?= $this->endSection() ?>
