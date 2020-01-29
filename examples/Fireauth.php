@@ -10,7 +10,7 @@
 *
 ***/
 
-class Fireauth extends Tatter\Fireauth\Config\Fireauth
+class Fireauth extends \Tatter\Fireauth\Config\Fireauth
 {
 	// URLs for successful logins, terms of service, and privacy policy
 	public $urls = [

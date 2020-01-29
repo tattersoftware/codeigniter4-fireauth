@@ -26,7 +26,7 @@ Or, install manually by downloading the source files and adding the directory to
 ## Configuration
 
 The library's default behavior can be altered by extending its config file. Copy
-**bin/Fireauth.php** to **app/Config/** and follow the instructions
+**examples/Fireauth.php** to **app/Config/** and follow the instructions
 in the comments. If no config file is found in **app/Config** the library will use its own.
 
 ### Credentials
@@ -34,6 +34,7 @@ in the comments. If no config file is found in **app/Config** the library will u
 The login view uses your Firebase app's credentials to connect to your project. You must
 provide the public API key in the **.env** file in the root of your project. Add this to
 the bottom of your file:
+
 ```
 #--------------------------------------------------------------------
 # FIREBASE
@@ -49,7 +50,7 @@ Firebase instance initialized. For example, your layout might include this:
 	<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
 
 	<!-- Firebase SDK config -->
-	<script src="<?= base_url('credentials/firebas.js') ?>"></script>
+	<script src="<?= base_url('credentials/firebase.js') ?>"></script>
 
 	<script>
 		// Initialize Firebase
@@ -119,5 +120,15 @@ the callback to process the login:
 		"providerId": "password",
 		"isNewUser": false
 	}
+}
+```
+
+You may do additional processing of the `user` object by defining an Event
+(in **app/Config/Events.php**) that receives the `firebase_new_user` trigger:
+
+```
+Events::on('firebase_new_user', function($user)
+{
+	log_message('debug', 'New FireAuth user: ' . $user->email);
 }
 ```
