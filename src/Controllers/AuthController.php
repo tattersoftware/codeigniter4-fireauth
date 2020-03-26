@@ -2,6 +2,7 @@
 
 use CodeIgniter\Controller;
 use CodeIgniter\Events\Events;
+use CodeIgniter\HTTP\Exceptions\HTTPException;
 use Myth\Auth\Entities\User;
 use Myth\Auth\Models\UserModel;
 
@@ -44,9 +45,19 @@ class AuthController extends Controller
 		}
 
 		// Verify the token with Google
-		$url      = 'https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=' . env('firebase.apiKey');
-		$client   = service('curlrequest');
-		$response = $client->request('POST', $url, ['json' => ['idToken' => $result->user->stsTokenManager->accessToken]]);
+		$url    = 'https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=' . env('firebase.apiKey');
+		$client = service('curlrequest');
+
+		try
+		{
+			$response = $client->request('POST', $url, ['json' => ['idToken' => $result->user->stsTokenManager->accessToken]]);
+		}
+		catch (HTTPException $e)
+		{
+			log_message('error', 'Unable to query url ' . $url . ': ' . $e->getMessage());
+			return;
+		}
+
 		if (! $identity = json_decode($response->getBody()))
 		{
 			log_message('error', 'Unable to verify IdentityToolkit response: ' . $response->getBody());
