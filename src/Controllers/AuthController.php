@@ -81,7 +81,7 @@ class AuthController extends Controller
 
 		// Verify required fields
 		// Myth:Auth currently requires all these - this may change in the future
-		if (empty($entity->email) || empty($entity->localId) || empty($entity->passwordHash))
+		if (empty($entity->email) || empty($entity->localId))
 		{
 			log_message('error', 'Required fields missing from result: ' . json_encode($entity));
 			return;
@@ -91,7 +91,7 @@ class AuthController extends Controller
 		$row = [
 			'email'         => $entity->email,
 			'username'      => $entity->localId,
-			'password_hash' => $entity->passwordHash, // this will prevent local logins
+			'password_hash' => bin2hex(random_bytes(16)), // this will prevent local logins
 			'displayName'   => $entity->displayName ?? '',
 			'active'        => 1,
 			'created_at'    => date('Y-m-d H:i:s', $entity->createdAt / 1000),			
